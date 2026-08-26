@@ -5,7 +5,7 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
-import { CartProvider } from "./context/CartContext";
+import { CartProvider } from "./context/CartProvider";
 
 function App() {
   return (

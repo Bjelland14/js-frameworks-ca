@@ -28,7 +28,7 @@ function Product() {
   const hasDiscount = product.discountedPrice < product.price;
 
   function handleAddToCart() {
-    if (cartContext) {
+    if (cartContext && product) {
       cartContext.addToCart(product);
     }
   }
