@@ -1,3 +1,4 @@
+import "../styles/Product.css";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
@@ -34,51 +35,57 @@ function Product() {
   }
 
   return (
-    <main>
-      <img src={product.image.url} alt={product.image.alt} />
+    <main className="product-page">
+      <img
+        className="product-page-image"
+        src={product.image.url}
+        alt={product.image.alt}
+      />
 
-      <h1>{product.title}</h1>
+      <div className="product-page-info">
+        <h1>{product.title}</h1>
 
-      <p>{product.description}</p>
+        <p>{product.description}</p>
 
-      {hasDiscount ? (
-        <>
-          <p>
-            <s>{product.price} NOK</s>
-          </p>
-          <p>{product.discountedPrice} NOK</p>
-        </>
-      ) : (
-        <p>{product.price} NOK</p>
-      )}
+        {hasDiscount ? (
+          <>
+            <p>
+              <s>{product.price} NOK</s>
+            </p>
+            <p>{product.discountedPrice} NOK</p>
+          </>
+        ) : (
+          <p>{product.price} NOK</p>
+        )}
 
-      <p>Rating: {product.rating}</p>
+        <p>Rating: {product.rating}</p>
 
-      {product.tags.length > 0 && (
-        <div>
-          <h2>Tags</h2>
+        {product.tags.length > 0 && (
+          <div>
+            <h2>Tags</h2>
 
-          {product.tags.map((tag) => (
-            <p key={tag}>{tag}</p>
-          ))}
-        </div>
-      )}
+            {product.tags.map((tag) => (
+              <p key={tag}>{tag}</p>
+            ))}
+          </div>
+        )}
 
-      {product.reviews.length > 0 && (
-        <div>
-          <h2>Reviews</h2>
+        {product.reviews.length > 0 && (
+          <div>
+            <h2>Reviews</h2>
 
-          {product.reviews.map((review) => (
-            <div key={review.id}>
-              <h3>{review.username}</h3>
-              <p>Rating: {review.rating}</p>
-              <p>{review.description}</p>
-            </div>
-          ))}
-        </div>
-      )}
+            {product.reviews.map((review) => (
+              <div key={review.id}>
+                <h3>{review.username}</h3>
+                <p>Rating: {review.rating}</p>
+                <p>{review.description}</p>
+              </div>
+            ))}
+          </div>
+        )}
 
-      <button onClick={handleAddToCart}>Add to Cart</button>
+        <button onClick={handleAddToCart}>Add to Cart</button>
+      </div>
     </main>
   );
 }

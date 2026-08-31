@@ -1,3 +1,4 @@
+import "../styles/Cart.css";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
@@ -30,7 +31,11 @@ function Cart() {
       ) : (
         <>
           {cart.map((item) => (
-            <div key={item.product.id}>
+            <div className="cart-item" key={item.product.id}>
+              <img
+                src={item.product.image.url}
+                alt={item.product.image.alt}
+              />
               <h2>{item.product.title}</h2>
 
               <p>{item.product.discountedPrice} NOK</p>
@@ -56,9 +61,10 @@ function Cart() {
             </div>
           ))}
 
-          <h2>Total: {total.toFixed(2)} NOK</h2>
-
-          <button onClick={handleCheckout}>Checkout</button>
+          <div className="cart-summary">
+            <h2>Total: {total.toFixed(2)} NOK</h2>
+            <button onClick={handleCheckout}>Checkout</button>
+          </div>
         </>
       )}
     </main>

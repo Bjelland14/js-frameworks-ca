@@ -1,0 +1,39 @@
+.product-page {
+  display: flex;
+  gap: 2rem;
+}
+
+.product-page-image {
+  width: 50%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-page-info {
+  width: 50%;
+}
+
+.product-page-info h1 {
+  text-align: left;
+}
+
+.product-page-info button {
+  background-color: #222;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .product-page {
+    flex-direction: column;
+  }
+
+  .product-page-image,
+  .product-page-info {
+    width: 100%;
+  }
+
+  .product-page-image {
+    height: 350px;
+  }
+}

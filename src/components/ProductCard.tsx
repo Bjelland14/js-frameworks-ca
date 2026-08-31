@@ -13,7 +13,7 @@ function ProductCard({ product }: ProductCardProps) {
   );
 
   return (
-    <div>
+    <div className="product-card">
       <Link to={`/product/${product.id}`}>
         {hasDiscount && <span>{discountPercentage}% OFF</span>}
 
