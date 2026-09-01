@@ -8,6 +8,36 @@
   border-radius: 5px;
 }
 
+.sort-select {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto 1.5rem;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-results {
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-results a {
+  display: block;
+  padding: 0.7rem;
+  color: #222;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+}
+
+.search-results a:hover {
+  background-color: #f0f0f0;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
