@@ -37,3 +37,10 @@
     height: 350px;
   }
 }
+
+.toast-message {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  background-color: #e6f4ea;
+  border-radius: 5px;
+}

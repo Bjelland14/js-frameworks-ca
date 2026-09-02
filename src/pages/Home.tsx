@@ -1,3 +1,4 @@
+import type { ProductsResponse } from "../types/ApiResponse";
 import "../styles/Home.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,13 +9,25 @@ function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function getProducts() {
-      const response = await fetch("https://v2.api.noroff.dev/online-shop");
-      const result = await response.json();
+      try {
+        const response = await fetch("https://v2.api.noroff.dev/online-shop");
 
-      setProducts(result.data);
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const result: ProductsResponse = await response.json();
+        setProducts(result.data);
+      } catch {
+        setError("Could not load products.");
+      } finally {
+        setLoading(false);
+      }
     }
 
     getProducts();
@@ -42,6 +55,9 @@ function Home() {
     <main>
       <h1>Products</h1>
 
+      {loading && <p>Loading products...</p>}
+      {error && <p>{error}</p>}
+
       <input
         className="search-input"
         type="text"
@@ -50,7 +66,7 @@ function Home() {
         onChange={(event) => setSearch(event.target.value)}
       />
 
-     <select
+      <select
         className="sort-select"
         value={sort}
         onChange={(event) => setSort(event.target.value)}

@@ -1,3 +1,4 @@
+import type { ProductResponse } from "../types/ApiResponse";
 import "../styles/Product.css";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -7,23 +8,44 @@ import type { Product as ProductType } from "../types/Product";
 function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState<ProductType | null>(null);
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const cartContext = useContext(CartContext);
 
   useEffect(() => {
     async function getProduct() {
-      const response = await fetch(
-        `https://v2.api.noroff.dev/online-shop/${id}`
-      );
+      try {
+        const response = await fetch(
+          `https://v2.api.noroff.dev/online-shop/${id}`
+        );
 
-      const result = await response.json();
-      setProduct(result.data);
+        if (!response.ok) {
+          throw new Error("Failed to fetch product");
+        }
+
+        const result: ProductResponse = await response.json();
+        setProduct(result.data);
+      } catch {
+        setError("Could not load product.");
+      } finally {
+        setLoading(false);
+      }
     }
 
     getProduct();
   }, [id]);
 
+  if (loading) {
+    return <p>Loading product...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   if (!product) {
-    return <p>Loading...</p>;
+    return <p>Product not found.</p>;
   }
 
   const hasDiscount = product.discountedPrice < product.price;
@@ -31,6 +53,11 @@ function Product() {
   function handleAddToCart() {
     if (cartContext && product) {
       cartContext.addToCart(product);
+      setMessage("Product added to cart");
+
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
     }
   }
 
@@ -85,6 +112,8 @@ function Product() {
         )}
 
         <button onClick={handleAddToCart}>Add to Cart</button>
+
+        {message && <p className="toast-message">{message}</p>}
       </div>
     </main>
   );

@@ -1,11 +1,12 @@
 import "../styles/Cart.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 
 function Cart() {
   const cartContext = useContext(CartContext);
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
   if (!cartContext) {
     return <p>Cart not available.</p>;
@@ -22,9 +23,20 @@ function Cart() {
     navigate("/checkout-success");
   }
 
+  function handleRemove(id: string) {
+    removeFromCart(id);
+    setMessage("Product removed from cart");
+
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
+  }
+
   return (
     <main>
       <h1>Cart</h1>
+
+      {message && <p className="toast-message">{message}</p>}
 
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
@@ -36,6 +48,7 @@ function Cart() {
                 src={item.product.image.url}
                 alt={item.product.image.alt}
               />
+
               <h2>{item.product.title}</h2>
 
               <p>{item.product.discountedPrice} NOK</p>
@@ -55,7 +68,7 @@ function Cart() {
                 />
               </label>
 
-              <button onClick={() => removeFromCart(item.product.id)}>
+              <button onClick={() => handleRemove(item.product.id)}>
                 Remove
               </button>
             </div>

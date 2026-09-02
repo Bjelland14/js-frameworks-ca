@@ -42,3 +42,9 @@
     align-items: flex-start;
   }
 }
+.toast-message {
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+  background-color: #e6f4ea;
+  border-radius: 5px;
+}
