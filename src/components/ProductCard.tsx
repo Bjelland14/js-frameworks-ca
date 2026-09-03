@@ -15,7 +15,9 @@ function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="product-card">
       <Link to={`/product/${product.id}`}>
-        {hasDiscount && <span>{discountPercentage}% OFF</span>}
+        <span className="discount-badge">
+          {hasDiscount ? `${discountPercentage}% OFF` : ""}
+        </span>
 
         <img src={product.image.url} alt={product.image.alt} />
 

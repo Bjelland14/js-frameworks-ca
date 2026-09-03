@@ -16,7 +16,7 @@ function Contact() {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (fullName.trim().length < 4) {
-      newErrors.push("Full name must be at least 4 characters.");
+      newErrors.push("Full name must be at least 3 characters.");
     }
 
     if (subject.trim().length < 3) {
