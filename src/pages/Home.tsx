@@ -74,6 +74,8 @@ function Home() {
       <h1>Products</h1>
 
       <input
+        id="search"
+        name="search"
         className="search-input"
         type="text"
         placeholder="Search products"
@@ -81,7 +83,9 @@ function Home() {
         onChange={(event) => setSearch(event.target.value)}
       />
 
-      <select
+     <select
+        id="sort"
+        name="sort"
         className="sort-select"
         value={sort}
         onChange={(event) => setSort(event.target.value)}

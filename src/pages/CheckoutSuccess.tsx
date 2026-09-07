@@ -8,8 +8,8 @@ function CheckoutSuccess() {
       <p>Thank you for your purchase.</p>
       <p>Your order has been completed successfully.</p>
 
-      <Link to="/">
-        <button>Continue shopping</button>
+      <Link className="continue-shopping" to="/">
+        Continue shopping
       </Link>
     </main>
   );

@@ -55,7 +55,10 @@ function Cart() {
 
               <label>
                 Quantity:
+
                 <input
+                  id={`quantity-${item.product.id}`}
+                  name={`quantity-${item.product.id}`}
                   type="number"
                   min="1"
                   value={item.quantity}
