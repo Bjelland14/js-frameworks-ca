@@ -33,17 +33,22 @@ export function CartProvider({ children }: CartProviderProps) {
     setCart(cart.filter((item) => item.product.id !== id));
   }
 
+ 
   function updateQuantity(id: string, quantity: number) {
-    setCart(
-      cart.map((item) => {
-        if (item.product.id === id) {
-          return { ...item, quantity };
-        }
+    if (quantity < 1) {
+      return;
+    }
 
-        return item;
-      })
-    );
-  }
+  setCart(
+    cart.map((item) => {
+      if (item.product.id === id) {
+        return { ...item, quantity };
+      }
+
+      return item;
+    })
+  );
+}
 
   function clearCart() {
     setCart([]);

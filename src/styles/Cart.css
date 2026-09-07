@@ -22,19 +22,12 @@
   padding: 0.4rem;
 }
 
-.cart-item button {
-  background-color: #222;
-  color: white;
-}
 
 .cart-summary {
   margin-top: 2rem;
 }
 
-.cart-summary button {
-  background-color: #222;
-  color: white;
-}
+
 
 @media (max-width: 600px) {
   .cart-item {

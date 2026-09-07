@@ -51,12 +51,27 @@ function Home() {
     sortedProducts.sort((a, b) => b.rating - a.rating);
   }
 
+  if (loading) {
+    return (
+      <main>
+        <h1>Products</h1>
+        <p>Loading products...</p>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main>
+        <h1>Products</h1>
+        <p>{error}</p>
+      </main>
+    );
+  }
+
   return (
     <main>
       <h1>Products</h1>
-
-      {loading && <p>Loading products...</p>}
-      {error && <p>{error}</p>}
 
       <input
         className="search-input"

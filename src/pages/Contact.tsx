@@ -15,7 +15,7 @@ function Contact() {
     const newErrors: string[] = [];
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (fullName.trim().length < 4) {
+    if (fullName.trim().length < 3) {
       newErrors.push("Full name must be at least 3 characters.");
     }
 

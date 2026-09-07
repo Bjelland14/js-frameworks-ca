@@ -66,10 +66,6 @@
   font-size: 1.1rem;
 }
 
-.product-card span {
-  font-weight: bold;
-}
-
 .discount-badge {
   display: block;
   height: 24px;
