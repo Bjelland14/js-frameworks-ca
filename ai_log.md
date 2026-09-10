@@ -1,5 +1,6 @@
 # AI Usage Log
 
+Date: 
 ## Tool Used
 
 ChatGPT

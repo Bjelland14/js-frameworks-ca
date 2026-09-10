@@ -38,20 +38,20 @@ function Contact() {
     }
   }
 
-     return (
-    <main>
-      <h1>Contact</h1>
+return (
+  <main>
+    <h1>Contact</h1>
 
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="fullName">Full Name</label>
-          <input
-            id="fullName"
-            type="text"
-            value={fullName}
-            onChange={(event) => setFullName(event.target.value)}
-          />
-        </div>
+    <form className="contact-form" onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="fullName">Full Name</label>
+        <input
+          id="fullName"
+          type="text"
+          value={fullName}
+          onChange={(event) => setFullName(event.target.value)}
+        />
+      </div>
 
         <div>
           <label htmlFor="subject">Subject</label>
