@@ -36,77 +36,55 @@ function Product() {
     getProduct();
   }, [id]);
 
-  if (loading) {
-    return <p>Loading product...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
-
-  if (!product) {
-    return <p>Product not found.</p>;
-  }
+  if (loading) return <p>Loading product...</p>;
+  if (error) return <p>{error}</p>;
+  if (!product) return <p>Product not found.</p>;
 
   const hasDiscount = product.discountedPrice < product.price;
+
+  const discountPercentage = Math.round(
+    ((product.price - product.discountedPrice) / product.price) * 100
+  );
 
   function handleAddToCart() {
     if (cartContext && product) {
       cartContext.addToCart(product);
       setMessage("Product added to cart");
-
-      setTimeout(() => {
-        setMessage("");
-      }, 2000);
+      setTimeout(() => setMessage(""), 2000);
     }
   }
 
   return (
     <main className="product-page">
-      <img
-        className="product-page-image"
-        src={product.image.url}
-        alt={product.image.alt}
-      />
+      <div className="product-image-container">
+        {hasDiscount && (
+          <span className="product-discount">-{discountPercentage}%</span>
+        )}
+
+        <img
+          className="product-page-image"
+          src={product.image.url}
+          alt={product.image.alt}
+        />
+      </div>
 
       <div className="product-page-info">
         <h1>{product.title}</h1>
 
-        <p>{product.description}</p>
+        <p className="product-page-rating">★ {product.rating}</p>
 
-        {hasDiscount ? (
-          <>
-            <p>
-              <s>{product.price} NOK</s>
-            </p>
-            <p>{product.discountedPrice} NOK</p>
-          </>
-        ) : (
-          <p>{product.price} NOK</p>
-        )}
+        <div className="product-page-price">
+          <strong>{product.discountedPrice} NOK</strong>
 
-        <p>Rating: {product.rating}</p>
+          {hasDiscount && <s>{product.price} NOK</s>}
+        </div>
+
+        <p className="product-description">{product.description}</p>
 
         {product.tags.length > 0 && (
-          <div>
-            <h2>Tags</h2>
-
+          <div className="product-tags">
             {product.tags.map((tag) => (
-              <p key={tag}>{tag}</p>
-            ))}
-          </div>
-        )}
-
-        {product.reviews.length > 0 && (
-          <div>
-            <h2>Reviews</h2>
-
-            {product.reviews.map((review) => (
-              <div key={review.id}>
-                <h3>{review.username}</h3>
-                <p>Rating: {review.rating}</p>
-                <p>{review.description}</p>
-              </div>
+              <span key={tag}>{tag}</span>
             ))}
           </div>
         )}
@@ -114,6 +92,20 @@ function Product() {
         <button onClick={handleAddToCart}>Add to Cart</button>
 
         {message && <p className="toast-message">{message}</p>}
+
+        {product.reviews.length > 0 && (
+          <div className="reviews">
+            <h2>Reviews</h2>
+
+            {product.reviews.map((review) => (
+              <div key={review.id}>
+                <h3>{review.username}</h3>
+                <p>★ {review.rating}</p>
+                <p>{review.description}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </main>
   );

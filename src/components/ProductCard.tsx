@@ -15,26 +15,33 @@ function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="product-card">
       <Link to={`/product/${product.id}`}>
-        <span className="discount-badge">
-          {hasDiscount ? `${discountPercentage}% OFF` : ""}
-        </span>
+        <div className="product-image-wrapper">
+          {hasDiscount && (
+            <span className="discount-badge">-{discountPercentage}%</span>
+          )}
 
-        <img src={product.image.url} alt={product.image.alt} />
+          <img src={product.image.url} alt={product.image.alt} />
+        </div>
 
-        <h2>{product.title}</h2>
+        <div className="product-card-content">
+          <h2>{product.title}</h2>
 
-        {hasDiscount ? (
-          <>
-            <p>
-              <s>{product.price} NOK</s>
-            </p>
-            <p>{product.discountedPrice} NOK</p>
-          </>
-        ) : (
-          <p>{product.price} NOK</p>
-        )}
+          <p className="product-rating">
+            ★ {product.rating}
+          </p>
 
-        <p>Rating: {product.rating}</p>
+          <div className="product-price">
+            <span className="current-price">
+              {product.discountedPrice} NOK
+            </span>
+
+            {hasDiscount && (
+              <span className="original-price">
+                {product.price} NOK
+              </span>
+            )}
+          </div>
+        </div>
       </Link>
     </div>
   );
