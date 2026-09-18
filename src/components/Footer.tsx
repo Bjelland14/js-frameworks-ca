@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>© 2026 Online Shop</p>
+      <p>Seian.le &copy; 2026</p>
     </footer>
   );
 }

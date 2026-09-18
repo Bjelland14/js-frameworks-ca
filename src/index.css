@@ -19,27 +19,34 @@ body {
 }
 
 header {
-  background-color: #0b1f3a;
-  padding: 1rem;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
 }
 
 nav {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0;
+
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
 nav a {
-  color: white;
+  color: #222;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border: 1px solid white;
-  border-radius: 5px;
 }
 
-nav a:hover {
-  background-color: white;
-  color: #0b1f3a;
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
 }
 
 main {
@@ -69,11 +76,12 @@ button:hover {
 }
 
 footer {
-  background-color: #0b1f3a;
-  color: white;
+  background-color: white;
+  color: #222;
   text-align: center;
   padding: 1rem;
   margin-top: 2rem;
+  border-top: 1px solid #ddd;
 }
 
 @media (max-width: 600px) {

@@ -12,12 +12,18 @@ function Header() {
   return (
     <header>
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/cart">Cart ({cartCount})</Link>
-        <Link to="/contact">Contact</Link>
+        <Link className="logo" to="/">
+          Seian.
+        </Link>
+
+        <div className="nav-links">
+          <Link to="/">Shop</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/cart">Cart ({cartCount})</Link>
+        </div>
       </nav>
     </header>
   );
 }
 
-export default Header;  
+export default Header;

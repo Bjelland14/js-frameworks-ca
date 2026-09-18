@@ -71,30 +71,35 @@ function Home() {
 
   return (
     <main>
-      <h1>Products</h1>
+      <div className="products-heading">
+        <h1>All products</h1>
+        <p>Find your favorite among the selection below.</p>
+      </div>
 
-      <input
-        id="search"
-        name="search"
-        className="search-input"
-        type="text"
-        placeholder="Search products"
-        value={search}
-        onChange={(event) => setSearch(event.target.value)}
-      />
+      <div className="product-controls">
+        <input
+          id="search"
+          name="search"
+          className="search-input"
+          type="text"
+          placeholder="Search products..."
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
 
-     <select
-        id="sort"
-        name="sort"
-        className="sort-select"
-        value={sort}
-        onChange={(event) => setSort(event.target.value)}
-      >
-        <option value="">Sort by</option>
-        <option value="price-low">Price: Low to High</option>
-        <option value="price-high">Price: High to Low</option>
-        <option value="rating">Rating</option>
-      </select>
+        <select
+          id="sort"
+          name="sort"
+          className="sort-select"
+          value={sort}
+          onChange={(event) => setSort(event.target.value)}
+        >
+          <option value="">Default</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Top rated</option>
+        </select>
+      </div>
 
       {search && (
         <div className="search-results">
