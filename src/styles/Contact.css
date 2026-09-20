@@ -1,5 +1,5 @@
 .contact-form {
-  max-width: 500px;
+  max-width: 520px;
   margin: 0 auto;
 }
 
@@ -9,30 +9,46 @@
 
 .contact-form label {
   display: block;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 0.7rem;
+  padding: 0.8rem;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
+  font: inherit;
 }
 
 .contact-form textarea {
-  height: 120px;
+  height: 140px;
+  resize: vertical;
+}
+
+.contact-form button {
+  background: #00205B;
+  padding: 0.7rem 1.2rem;
 }
 
 .contact-errors {
-  max-width: 500px;
+  max-width: 520px;
   margin: 1rem auto;
 }
 
 .contact-errors p {
   color: #b00020;
-  background-color: #ffe6e6;
-  padding: 0.5rem;
-  border-radius: 5px;
-  margin: 0.5rem 0;
+  margin: 0.4rem 0;
+}
+
+.contact-intro {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.field-error {
+  color: #b00020;
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
 }

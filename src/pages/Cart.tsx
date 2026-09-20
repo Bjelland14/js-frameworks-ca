@@ -8,15 +8,14 @@ function Cart() {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
-  if (!cartContext) {
-    return <p>Cart not available.</p>;
-  }
+  if (!cartContext) return <p>Cart not available.</p>;
 
   const { cart, removeFromCart, updateQuantity, clearCart } = cartContext;
 
-  const total = cart.reduce((sum, item) => {
-    return sum + item.product.discountedPrice * item.quantity;
-  }, 0);
+  const total = cart.reduce(
+    (sum, item) => sum + item.product.discountedPrice * item.quantity,
+    0
+  );
 
   function handleCheckout() {
     clearCart();
@@ -26,22 +25,25 @@ function Cart() {
   function handleRemove(id: string) {
     removeFromCart(id);
     setMessage("Product removed from cart");
-
-    setTimeout(() => {
-      setMessage("");
-    }, 2000);
+    setTimeout(() => setMessage(""), 2000);
   }
 
   return (
-    <main>
-      <h1>Cart</h1>
+    <main className="cart-page">
+      
 
       {message && <p className="toast-message">{message}</p>}
 
       {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
+        <div className="empty-cart">
+          <h1>Your cart is empty</h1>
+          <p>Add some items to your cart to get started.</p>
+          <button onClick={() => navigate("/")}>Go to shop</button>
+          </div>
+        ) : (
         <>
+            <h1>Your cart</h1>
+          
           {cart.map((item) => (
             <div className="cart-item" key={item.product.id}>
               <img
@@ -49,37 +51,54 @@ function Cart() {
                 alt={item.product.image.alt}
               />
 
-              <h2>{item.product.title}</h2>
+              <div className="cart-product-info">
+                <h2>{item.product.title}</h2>
+                <p>{item.product.discountedPrice} NOK / each</p>
+              </div>
 
-              <p>{item.product.discountedPrice} NOK</p>
-
-              <label>
-                Quantity:
-
-                <input
-                  id={`quantity-${item.product.id}`}
-                  name={`quantity-${item.product.id}`}
-                  type="number"
-                  min="1"
-                  value={item.quantity}
-                  onChange={(event) =>
-                    updateQuantity(
-                      item.product.id,
-                      Number(event.target.value)
-                    )
+              <div className="cart-quantity">
+                <button
+                  onClick={() =>
+                    updateQuantity(item.product.id, item.quantity - 1)
                   }
-                />
-              </label>
+                  disabled={item.quantity === 1}
+                >
+                  -
+                </button>
 
-              <button onClick={() => handleRemove(item.product.id)}>
+                <span>{item.quantity}</span>
+
+                <button
+                  onClick={() =>
+                    updateQuantity(item.product.id, item.quantity + 1)
+                  }
+                >
+                  +
+                </button>
+              </div>
+
+              <strong className="cart-item-total">
+                {(item.product.discountedPrice * item.quantity).toFixed(2)} NOK
+              </strong>
+
+              <button
+                className="remove-button"
+                onClick={() => handleRemove(item.product.id)}
+              >
                 Remove
               </button>
             </div>
           ))}
 
           <div className="cart-summary">
-            <h2>Total: {total.toFixed(2)} NOK</h2>
-            <button onClick={handleCheckout}>Checkout</button>
+            <div className="cart-total">
+              <h2>Total</h2>
+              <h2>{total.toFixed(2)} NOK</h2>
+            </div>
+
+            <button className="checkout-button" onClick={handleCheckout}>
+              Go to checkout
+            </button>
           </div>
         </>
       )}

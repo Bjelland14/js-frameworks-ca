@@ -7,60 +7,88 @@ function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const [errors, setErrors] = useState<string[]>([]);
+  const [errors, setErrors] = useState({
+    fullName: "",
+    subject: "",
+    email: "",
+    message: "",
+  });
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const newErrors: string[] = [];
+    const newErrors = {
+      fullName: "",
+      subject: "",
+      email: "",
+      message: "",
+    };
+
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (fullName.trim().length < 3) {
-      newErrors.push("Full name must be at least 3 characters.");
+      newErrors.fullName = "Full name must be at least 3 characters.";
     }
 
     if (subject.trim().length < 3) {
-      newErrors.push("Subject must be at least 3 characters.");
+      newErrors.subject = "Subject must be at least 3 characters.";
     }
 
     if (!emailPattern.test(email)) {
-      newErrors.push("Please enter a valid email.");
+      newErrors.email = "Please enter a valid email.";
     }
 
     if (message.trim().length < 10) {
-      newErrors.push("Message must be at least 10 characters.");
+      newErrors.message = "Message must be at least 10 characters.";
     }
 
     setErrors(newErrors);
 
-    if (newErrors.length === 0) {
+    if (
+      !newErrors.fullName &&
+      !newErrors.subject &&
+      !newErrors.email &&
+      !newErrors.message
+    ) {
       alert("Message sent!");
     }
   }
 
-return (
-  <main>
-    <h1>Contact</h1>
+  return (
+    <main>
+      <h1>Contact</h1>
 
-    <form className="contact-form" onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="fullName">Full Name</label>
-        <input
-          id="fullName"
-          type="text"
-          value={fullName}
-          onChange={(event) => setFullName(event.target.value)}
-        />
-      </div>
+      <p className="contact-intro">
+        Have a question? Send us a message below.
+      </p>
+
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="fullName">Full Name</label>
+          <input
+            id="fullName"
+            type="text"
+            autoComplete="name"
+            value={fullName}
+            onChange={(event) => setFullName(event.target.value)}
+          />
+          {errors.fullName && (
+            <p className="field-error">{errors.fullName}</p>
+          )}
+        </div>
 
         <div>
           <label htmlFor="subject">Subject</label>
           <input
             id="subject"
             type="text"
+            autoComplete="off"
             value={subject}
             onChange={(event) => setSubject(event.target.value)}
           />
+          {errors.subject && (
+            <p className="field-error">{errors.subject}</p>
+          )}
         </div>
 
         <div>
@@ -68,9 +96,13 @@ return (
           <input
             id="email"
             type="email"
+            autoComplete="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
+          {errors.email && (
+            <p className="field-error">{errors.email}</p>
+          )}
         </div>
 
         <div>
@@ -80,18 +112,13 @@ return (
             value={message}
             onChange={(event) => setMessage(event.target.value)}
           />
+          {errors.message && (
+            <p className="field-error">{errors.message}</p>
+          )}
         </div>
 
         <button type="submit">Send</button>
       </form>
-
-      {errors.length > 0 && (
-        <div className="contact-errors">
-          {errors.map((error) => (
-            <p key={error}>{error}</p>
-          ))}
-        </div>
-      )}
     </main>
   );
 }

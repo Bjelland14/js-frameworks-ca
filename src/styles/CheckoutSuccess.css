@@ -1,20 +1,40 @@
 .checkout-success {
   text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: #00205B;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.checkout-success h1 {
+  margin-bottom: 1rem;
 }
 
 .checkout-success p {
-  margin-bottom: 1rem;
+  color: #666;
 }
 
 .continue-shopping {
   display: inline-block;
-  padding: 0.6rem 1rem;
-  border-radius: 5px;
-  background-color: #145da0;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.2rem;
+  background: #00205B;
   color: white;
   text-decoration: none;
+  border-radius: 5px;
 }
 
 .continue-shopping:hover {
-  background-color: #0b1f3a;
+  background: #0b1f3a;
 }

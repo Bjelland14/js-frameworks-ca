@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>Seian. &copy; 2026</p>
+      <p>Shop &copy; 2026</p>
     </footer>
   );
 }

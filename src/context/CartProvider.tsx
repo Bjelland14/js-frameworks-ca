@@ -11,21 +11,26 @@ interface CartProviderProps {
 export function CartProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  function addToCart(product: Product) {
-    const existingItem = cart.find((item) => item.product.id === product.id);
+  function addToCart(product: Product, quantity = 1) {
+    const existingItem = cart.find(
+      (item) => item.product.id === product.id
+    );
 
     if (existingItem) {
       setCart(
         cart.map((item) => {
           if (item.product.id === product.id) {
-            return { ...item, quantity: item.quantity + 1 };
+            return {
+              ...item,
+              quantity: item.quantity + quantity,
+            };
           }
 
           return item;
         })
       );
     } else {
-      setCart([...cart, { product, quantity: 1 }]);
+      setCart([...cart, { product, quantity }]);
     }
   }
 

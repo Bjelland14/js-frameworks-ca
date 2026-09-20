@@ -11,6 +11,8 @@ function Product() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [quantity, setQuantity] = useState(1);
+
   const cartContext = useContext(CartContext);
 
   useEffect(() => {
@@ -48,7 +50,7 @@ function Product() {
 
   function handleAddToCart() {
     if (cartContext && product) {
-      cartContext.addToCart(product);
+      cartContext.addToCart(product, quantity);
       setMessage("Product added to cart");
       setTimeout(() => setMessage(""), 2000);
     }
@@ -75,7 +77,6 @@ function Product() {
 
         <div className="product-page-price">
           <strong>{product.discountedPrice} NOK</strong>
-
           {hasDiscount && <s>{product.price} NOK</s>}
         </div>
 
@@ -89,7 +90,31 @@ function Product() {
           </div>
         )}
 
-        <button onClick={handleAddToCart}>Add to Cart</button>
+        <div className="product-actions">
+          <div className="quantity-control">
+            <button
+              type="button"
+              onClick={() => {
+                if (quantity > 1) {
+                  setQuantity(quantity - 1);
+                }
+              }}
+            >
+              -
+            </button>
+
+            <span>{quantity}</span>
+
+            <button
+              type="button"
+              onClick={() => setQuantity(quantity + 1)}
+            >
+              +
+            </button>
+          </div>
+
+          <button onClick={handleAddToCart}>Add to Cart</button>
+        </div>
 
         {message && <p className="toast-message">{message}</p>}
 

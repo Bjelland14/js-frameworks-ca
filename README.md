@@ -20,6 +20,7 @@ The application uses the Noroff Online Shop API to fetch product data.
 - Cart total calculation
 - Checkout success page
 - Contact form validation
+- Loading and error handling
 - Responsive design
 
 ## Built With
@@ -37,14 +38,31 @@ Install the dependencies:
 
 ```bash
 npm install
+```
 
+Start the development server:
+
+```bash
+npm run dev
+```
+
+## Scripts
+
+```bash
+npm run dev
+npm run build
+npm run lint
+npm run preview
+```
 
 ## Live Site
 
+Live site link will be added after deployment.
 
-## AI Usage 
+## AI Usage
 
 See AI_LOG.md for more information.
 
 ## Author
+
 Lloyd Bjelland

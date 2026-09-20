@@ -13,7 +13,7 @@ function Header() {
     <header>
       <nav>
         <Link className="logo" to="/">
-          Seian.
+          Shop
         </Link>
 
         <div className="nav-links">
