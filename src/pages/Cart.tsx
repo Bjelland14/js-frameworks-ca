@@ -30,8 +30,6 @@ function Cart() {
 
   return (
     <main className="cart-page">
-      
-
       {message && <p className="toast-message">{message}</p>}
 
       {cart.length === 0 ? (
@@ -39,11 +37,11 @@ function Cart() {
           <h1>Your cart is empty</h1>
           <p>Add some items to your cart to get started.</p>
           <button onClick={() => navigate("/")}>Go to shop</button>
-          </div>
-        ) : (
+        </div>
+      ) : (
         <>
-            <h1>Your cart</h1>
-          
+          <h1>Your cart</h1>
+
           {cart.map((item) => (
             <div className="cart-item" key={item.product.id}>
               <img

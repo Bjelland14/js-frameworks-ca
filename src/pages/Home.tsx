@@ -40,15 +40,11 @@ function Home() {
   const sortedProducts = [...filteredProducts];
 
   if (sort === "price-low") {
-    sortedProducts.sort((a, b) => a.discountedPrice - b.discountedPrice);
-  }
-
-  if (sort === "price-high") {
-    sortedProducts.sort((a, b) => b.discountedPrice - a.discountedPrice);
-  }
-
-  if (sort === "rating") {
-    sortedProducts.sort((a, b) => b.rating - a.rating);
+     sortedProducts.sort((a, b) => a.discountedPrice - b.discountedPrice);
+  } else if (sort === "price-high") {
+     sortedProducts.sort((a, b) => b.discountedPrice - a.discountedPrice);
+  } else if (sort === "rating") {
+     sortedProducts.sort((a, b) => b.rating - a.rating);
   }
 
   if (loading) {
