@@ -57,7 +57,7 @@ npm run preview
 
 ## Live Site
 
-Live site link will be added after deployment.
+[View live site](Link here...)
 
 ## AI Usage
 

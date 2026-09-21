@@ -26,4 +26,4 @@ One of the main challenges was managing the shopping cart state and product quan
 
 I reviewed the assignment's AI policy during the development process.
 
-All AI assistance received during the project is documented in this log.
+AI assistance received during the project is summarized in this log.
