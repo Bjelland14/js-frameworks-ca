@@ -27,7 +27,7 @@ function ProductCard({ product }: ProductCardProps) {
           <h2>{product.title}</h2>
 
           <p className="product-rating">
-            ★ {product.rating}
+             Rating:  {product.rating}
           </p>
 
           <div className="product-price">

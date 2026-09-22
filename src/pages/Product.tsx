@@ -73,7 +73,7 @@ function Product() {
       <div className="product-page-info">
         <h1>{product.title}</h1>
 
-        <p className="product-page-rating">★ {product.rating}</p>
+        <p className="product-page-rating">Rating: {product.rating}</p>
 
         <div className="product-page-price">
           <strong>{product.discountedPrice} NOK</strong>
@@ -125,7 +125,7 @@ function Product() {
             {product.reviews.map((review) => (
               <div key={review.id}>
                 <h3>{review.username}</h3>
-                <p>★ {review.rating}</p>
+                <p>Rating: {review.rating}</p>
                 <p>{review.description}</p>
               </div>
             ))}
