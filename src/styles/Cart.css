@@ -98,3 +98,7 @@
     min-width: auto;
   }
 }
+
+.cart-quantity button:hover {
+  background: #eee;
+}

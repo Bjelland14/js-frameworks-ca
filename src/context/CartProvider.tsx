@@ -12,13 +12,13 @@ export function CartProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   function addToCart(product: Product, quantity = 1) {
-    const existingItem = cart.find(
-      (item) => item.product.id === product.id
-    );
+    setCart((prev) => {
+      const existingItem = prev.find(
+        (item) => item.product.id === product.id
+      );
 
-    if (existingItem) {
-      setCart(
-        cart.map((item) => {
+      if (existingItem) {
+        return prev.map((item) => {
           if (item.product.id === product.id) {
             return {
               ...item,
@@ -27,15 +27,15 @@ export function CartProvider({ children }: CartProviderProps) {
           }
 
           return item;
-        })
-      );
-    } else {
-      setCart([...cart, { product, quantity }]);
-    }
+        });
+      }
+
+      return [...prev, { product, quantity }];
+    });
   }
 
   function removeFromCart(id: string) {
-    setCart(cart.filter((item) => item.product.id !== id));
+    setCart((prev) => prev.filter((item) => item.product.id !== id));
   }
 
   function updateQuantity(id: string, quantity: number) {
@@ -43,8 +43,8 @@ export function CartProvider({ children }: CartProviderProps) {
       return;
     }
 
-    setCart(
-      cart.map((item) => {
+    setCart((prev) =>
+      prev.map((item) => {
         if (item.product.id === id) {
           return { ...item, quantity };
         }

@@ -1,6 +1,6 @@
 # AI Usage Log
 
-Date: 29.08 - 
+Date: 29.08 - 23.09
 ## Tool Used
 
 ChatGPT
@@ -13,10 +13,20 @@ ChatGPT was used for:
 - Explaining complex JavaScript concepts
 - Debugging assistance by describing errors.
 - Explaining the difference between ESLint errors, browser warnings, and build errors
+- CSS debugging and small styling improvements for cart quantity buttons
 
 ## Outcome
 
-ChatGPT was used to explain errors.
+ChatGPT helped me understand and resolve a bug where the cart only 
+added one item regardless of selected quantity, by explaining how 
+state needed to be passed between the Cart Context and Cart Provider. 
+It also clarified the difference between ESLint errors, browser 
+warnings, and build errors when I encountered TypeScript typing issues 
+during development.
+
+ChatGPT also helped me identify a CSS hover issue with the cart quantity 
+buttons and suggested using a light hover background instead of the 
+global button hover style.
 
 ## Notes
 
