@@ -1,6 +1,6 @@
 # AI Usage Log
 
-Date: 18.08 - 23.09
+Date: 18.08 - 24.09
 ## Tool Used
 
 ChatGPT
